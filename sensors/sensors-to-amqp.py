@@ -10,6 +10,8 @@ import veml6070
 import bme280
 
 #Proton import for AMQP
+# Don't forget to install proton
+# apt-get install python-qpid-proton
 from proton import Message
 from proton.handlers import MessagingHandler
 from proton.reactor import Container
