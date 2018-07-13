@@ -90,18 +90,18 @@ You must have noticed that all the nodes use the same frequency and get scramble
     * make setup-openlab
 - Analysis and modification of the source code
     * cd parts/openlab
-    * cd app/iotlab_examples/tutorial
+    * cd appli/iotlab_examples/tutorial
     * Analyze main.c source code and other files.
       - What do you understand about the different functions?
-    * Save main.c in main.old and modify main.c to change the radio channel (and other things if you want). Each user must choose a different channel between 11 and 26: 10+ <user number>
+    * Save main.c in main.old and modify main.c to change the radio channel (and other things if you want). Each user on the same site must choose a different channel between 11 and 26.
 - Compilation
     * cd ../../..
     * mkdir build.m3; cd build.m3
-    * cmake .. -DPLATFORM = iotlab-m3
+    * cmake .. -DPLATFORM=iotlab-m3
     * make tutorial_m3
     * The compiled firmware is bin/tutorial_m3.elf
     * Rename the file to keep an explicit name
-- Download this file on your computer (with scp) and restart an experiment as in the previous part (*Attention*: the affected nodes may have changed). You should not have a conflict anymore.
+- Download this file on your computer (with scp) and restart an experiment as in the previous part (*Attention*: the affected nodes may have changed). If you had conflicts with other users on the same site in the same channel, you should not have a conflict anymore.
 
 > To go further: it is possible to install the ARM compilation environment on your computer. Details about the installed version are here: https://github.com/iot-lab/iot-lab/wiki/Versions-of-the-GNU-toolchain-for-ARM
 > It is necessary to download the cross-compiler gcc-arm-embedded (attention to the version) then the toolchain arm-gcc being careful that it is a 32 bits version, so on 64 bits architectures it is necessary to install the libc and libncurses for 32 bits.
