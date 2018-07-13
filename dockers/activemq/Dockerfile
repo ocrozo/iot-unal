@@ -7,6 +7,8 @@ ENV SHA512_VAL=26d8154fcfe17ab90508b3b9d46b40815404fa3886cfdc4eae4b06086332203bd
 
 ENV ACTIVEMQ_HOME /opt/activemq
 
+ENV HTTP_PROXY "http://168.176.239.41:8080",
+ENV HTTPS_PROXY "http://168.176.239.41:8080"
 
 RUN curl "https://archive.apache.org/dist/activemq/$ACTIVEMQ_VERSION/$ACTIVEMQ-bin.tar.gz" -o $ACTIVEMQ-bin.tar.gz
 
