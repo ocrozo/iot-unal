@@ -69,7 +69,7 @@ experimentation:
   * Connect to the frontend of your site 
   * Interact with your M3 nodes
     - M3 nodes can read and write on their serial port. To access it, the IoT-lab platform opens a TCP socket on port 20000.
-    - Connect to the nodes with the command "nc <node-id> 20000"
+    - Connect to the nodes with the command `nc <node-id> 20000`
     - If your node is m3-14.lyon.iot-lab.info, node-id is m3-14.
     - A menu appears (type "h entry" if it is not the case)
     - Get the uid of each node
