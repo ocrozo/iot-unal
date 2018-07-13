@@ -119,7 +119,7 @@ the meaning of these values
 - Save the profile
 - Start a new experiment as before (2 nodes each) except that at the time of the association, you associate your profile with the nodes
 - Connect to the frontend ssh (make sure you have the -X option
-- Look at the log files ~/.iot-lab/<experiment-id>/consumption/M3-<id>.oml
+- Look at the log files `~/.iot-lab/<experiment-id>/consumption/M3-<id>.oml`
     * Identify saved values, their units, etc. 
     * Display the results as curves `plot_oml_consum -p -i ~/.iot-lab/<experiment-id>/consumption/m3-<id>.oml`
     * What produces the swing you see?
