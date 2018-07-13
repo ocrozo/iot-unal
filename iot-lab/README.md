@@ -106,3 +106,54 @@ You must have noticed that all the nodes use the same frequency and get scramble
 > To go further: it is possible to install the ARM compilation environment on your computer. Details about the installed version are here: https://github.com/iot-lab/iot-lab/wiki/Versions-of-the-GNU-toolchain-for-ARM
 > It is necessary to download the cross-compiler gcc-arm-embedded (attention to the version) then the toolchain arm-gcc being careful that it is a 32 bits version, so on 64 bits architectures it is necessary to install the libc and libncurses for 32 bits.
 > It is simple and more comfortable to work with your favorite development tools. For the scope of this tutorial it is not necessary.
+
+## 4. Measure the energy consumption of a node
+- Connect to the web portal
+- Go to the "Resources" tab 
+- Create a new profile with an explicit name
+- Choose the M3 architecture, and check Consumption. For the moment let "radio mode" to none.
+- Select all Consumption options.  This indicates that you want the energy consumption recorded in a log.
+- Keep the default values: Period: 8244 μs, Average = 4
+- Read the box at the bottom of https://www.iot-lab.info/tutorials/monitor-consumption-m3-node/ to understand
+the meaning of these values
+- Save the profile
+- Start a new experiment as before (2 nodes each) except that at the time of the association, you associate your profile with the nodes
+- Connect to the frontend ssh (make sure you have the -X option
+- Look at the log files ~ /.iot-lab/<experiment-id>/consumption/M3-<id>.oml
+    * Identify saved values, their units, etc. 
+    * Display the results as curves `plot_oml_consum -p -i ~/.iot-lab/<experiment-id>/consumption/m3-<id>.oml`
+    * What produces the swing you see?
+    * Deduce the energy consumption of an element of the nodes.
+- Connect to the sensors (with nc) and send packets.
+    * Try to estimate the energy consumption of a transmission and reception.
+- How could you change the firmware to measure with more reliability and more precision?
+    * Make averages
+    * Evaluate the impact of packet size on the consumption 
+    * Do it!
+- Evaluate the impact of transmission power on consumption
+    * The allowable transmission power values ​​are defined in the file ~/iot-lab/parts/openlab/net/phy.h
+- **Bonus**: you can also download the oml files and analyze them a posteriori with a spreadsheet, gnuplot, etc. tool.
+
+## 5. Measure the quality of reception
+- Go to the "Resources" tab 
+- Create a new profile with an explicit name
+- - Choose the M3 architecture, and check "Radio". Let "Consumption" to none.
+- Select radio mode rssi.
+- Choose the channel to measure according to your firmware and a channel that no one uses (this one can be the same for all)
+- Period = 1ms, number of measure per channel = 1
+- Read the box at the bottom of https://www.iot-lab.info/tutorials/radio-monitoring-for-m3-nodes/ to understand the meaning of these values
+- Save the profile
+- Launch a new experiment as before with this profile
+- Connect to the ssh frontend (make sure you have the -X option)
+- Look at ~/.iot-lab/<experiment-id>/radio/m3-files<Id>.oml
+- Identify values, their units, etc.
+- Display the results as curves : `plot_oml_radio -a -i ~/.iot-lab/<experiment-id>/radio/m3-<id>.oml`
+- Connect to the sensors (with nc) and send some packets. Estimate the quality of the channel. Is she the same with long packets and short packets?
+- By comparing values ​​with other users, what can you deduce? Is there a channel more suitable than another?
+- Evaluate the impact of the transmission power on the RSSI
+  * The allowable transmission power values ​​are defined in the file ~/iot-lab/parts/openlab/net/phy.h
+
+## 6. Bonus: to go further
+- Watch the tutorials to use the CLI (command-line interface) tools
+- Follow the tutorial "radio sniffer" https://www.iot-lab.info/tutorials/radio-sniffer/
+- Follow the tutorial "ipv6-coap contiki" https://www.iot-lab.info/tutorials/public-ipv6-coap/
