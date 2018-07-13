@@ -117,7 +117,7 @@ You must have noticed that all the nodes use the same frequency and get scramble
 - Read the box at the bottom of https://www.iot-lab.info/tutorials/monitor-consumption-m3-node/ to understand
 the meaning of these values
 - Save the profile
-- Start a new experiment as before (2 nodes each) except that at the time of the association, you associate your profile with the nodes
+- Start a new experiment as before (2 nodes each) except that at the time of the association, you associate your monitoring profile with the nodes
 - Connect to the frontend ssh (make sure you have the -X option
 - Look at the log files `~/.iot-lab/<experiment-id>/consumption/M3-<id>.oml`
     * Identify saved values, their units, etc. 
