@@ -11,4 +11,8 @@ To connect to om2m you need a http client library:
 sudo apt-get install python-httplib2
 ```
 
-
+## Launch the script
+Edit the file `onem2m-rasp.py to set the correct IP address corresponding to your configuration.
+```
+sudo python onem2m-rasp.py
+```
