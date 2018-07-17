@@ -66,16 +66,17 @@ def runWebServer(server_class=HTTPServer, handler_class=S, port=80):
         #httpd.serve_forever()
         httpd.handle_request()
 
-def loop():
+def push_data(luxURL):
 
     while True:
         # Read luminosity values
         
         (light_ch0,light_ch1)= tsl2561.readValues()
         print ("Full Spectrum(IR + Visible) :%d lux" % light_ch0)
-        print ("Infrared Value :%d lux" % light_ch1)
-        print ("Visible Value :%d lux" % (light_ch0 - light_ch1))	
+        data = "{\"m2m:cin\":{\"con\":\""+sensorValue+"\"}}"
+        send(luxURL,4,data)
         time.sleep(5)
+
 
 # Set output mode for GPIO 4 to OUT
 def setup_gpio():
@@ -86,7 +87,7 @@ def setup_gpio():
 def setup_ae():
     # Create AE resource
     resultDevice = send("/server",2,"{\"m2m:ae\":{\"rn\":\"mydevice1\",\"api\":\"mydevice1.company.com\",\"rr\":\"true\",\"poa\":[\"http://"+aeIP+":"+aePort+"\"]}}")
-  
+    resp_lux=""  
     if resultDevice["status"]=="201":
         # Create Container resource
         resp_lux = send(resultDevice["content-location"],3,"{\"m2m:cnt\":{\"rn\":\"luminosity\"}}")
@@ -102,7 +103,7 @@ def setup_ae():
 
         # Create Subscription resource
         resp_suscription = send(resp_led["content-location"],23,"{\"m2m:sub\":{\"rn\":\"led_sub\",\"nu\":[\"Cae_device1\"],\"nct\":1}}")
-  
+    return resp_lux["content-location"]
 
 # Method in charge of sending request to the CSE
 def send(url, ty, rep):
@@ -127,11 +128,11 @@ if __name__ == '__main__':
     thread.start()
 
     # Setup AE ressources
-    setup_ae()
+    luxURL = setup_ae()
 
     print ('Press Ctrl-C to quit.')
     try:
-        loop()
+        push_data(luxURL)
     except (KeyboardInterrupt, SystemExit):
         KEEP_RUNNING=False
         thread.kill_received=True                 
