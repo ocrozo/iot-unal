@@ -89,19 +89,19 @@ def setup_ae():
   
     if result["status"]=="201":
         # Create Container resource
-        send("/server/mydevice1",3,"{\"m2m:cnt\":{\"rn\":\"luminosity\"}}")
+        send("/server/Cae_device1",3,"{\"m2m:cnt\":{\"rn\":\"luminosity\"}}")
 
         #Create ContentInstance resource
-        send("/server/mydevice1/luminosity",4,"{\"m2m:cin\":{\"con\":\"0\"}}")
+        send("/server/Cae_device1/luminosity",4,"{\"m2m:cin\":{\"con\":\"0\"}}")
 
         # Create Container resource
-        send("/server/mydevice1",3,"{\"m2m:cnt\":{\"rn\":\"led\"}}")
+        send("/server/Cae_device1",3,"{\"m2m:cnt\":{\"rn\":\"led\"}}")
 
         # Create ContentInstance resource
-        send("/server/mydevice1/led",4,"{\"m2m:cin\":{\"con\":\"OFF\"}}")
+        send("/server/Cae_device1/led",4,"{\"m2m:cin\":{\"con\":\"OFF\"}}")
 
         # Create Subscription resource
-        send("/server/mydevice1/led",23,"{\"m2m:sub\":{\"rn\":\"led_sub\",\"nu\":[\"Cae_device1\"],\"nct\":1}}")
+        send("/server/Cae_device1/led",23,"{\"m2m:sub\":{\"rn\":\"led_sub\",\"nu\":[\"Cae_device1\"],\"nct\":1}}")
   
 
 # Method in charge of sending request to the CSE
