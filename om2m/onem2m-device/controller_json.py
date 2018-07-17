@@ -129,7 +129,9 @@ if __name__ == '__main__':
 
     # Setup AE ressources
     luxURL = setup_ae()
-
+    if luxURL == "":
+        print("Error while creating ressources")
+        exit()
     print ('Press Ctrl-C to quit.')
     try:
         push_data(luxURL)
