@@ -19,7 +19,7 @@ httpPort = 8080
 
 # AE params
 aeIP = "10.10.6.163" #Raspberry IP address
-aePort   = 80
+aePort   = "80"
 origin   = "Cae_device1"
 
 KEEP_RUNNING = True
@@ -112,7 +112,7 @@ def send(url, ty, rep):
         "Content-Type": "application/json;ty="+ty}
     
     h = httplib2.Http(".cache")
-    (resp, content) = h.request("http://" + host + "~" + url, "POST", headers=heads, body=rep)
+    (resp, content) = h.request("http://" + host + ":" + str(httpPort) + "/~" + url, "POST", headers=heads, body=rep)
     print(resp)
     return resp
 
