@@ -109,7 +109,7 @@ def send(url, ty, rep):
 
     heads = {"Host":host,
         "X-M2M-Origin":origin,
-        "Content-Type": "application/json;ty="+ty}
+        "Content-Type": "application/json;ty="+str(ty)}
     
     h = httplib2.Http(".cache")
     (resp, content) = h.request("http://" + host + ":" + str(httpPort) + "/~" + url, "POST", headers=heads, body=rep)
