@@ -105,7 +105,7 @@ def setup_ae():
   
 
 # Method in charge of sending request to the CSE
-def send(url, ty, rep) {
+def send(url, ty, rep):
 
     heads = {"Host":host,
         "X-M2M-Origin":origin,
@@ -115,7 +115,7 @@ def send(url, ty, rep) {
     (resp, content) = h.request("http://" + host + "~" + url, "POST", headers=heads, body=rep)
     print(resp)
     return resp
-}
+
 
 # Main program logic follows:
 if __name__ == '__main__':
