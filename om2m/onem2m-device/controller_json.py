@@ -73,7 +73,7 @@ def push_data(luxURL):
         
         (light_ch0,light_ch1)= tsl2561.readValues()
         print ("Full Spectrum(IR + Visible) :%d lux" % light_ch0)
-        data = "{\"m2m:cin\":{\"con\":\""+sensorValue+"\"}}"
+        data = "{\"m2m:cin\":{\"con\":\"" + light_ch0 + "\"}}"
         send(luxURL,4,data)
         time.sleep(5)
 
