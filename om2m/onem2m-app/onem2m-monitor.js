@@ -6,11 +6,11 @@ var app = express();
 
 ///////////////Parameters/////////////////
 //CSE Params
-var cseUri = "http://10.25.12.50:8080";
+var cseUri = "http://192.168.2.1:8080";
 
 //AE params
 var aeId = "Cae-monitor1";
-var aeIp = "10.25.12.50";
+var aeIp = "192.168.2.1";
 var aePort = 3000;
 //////////////////////////////////////////
 
