@@ -85,23 +85,23 @@ def setup_gpio():
 
 def setup_ae():
     # Create AE resource
-    result = send("/server",2,"{\"m2m:ae\":{\"rn\":\"mydevice1\",\"api\":\"mydevice1.company.com\",\"rr\":\"true\",\"poa\":[\"http://"+aeIP+":"+aePort+"\"]}}")
+    resultDevice = send("/server",2,"{\"m2m:ae\":{\"rn\":\"mydevice1\",\"api\":\"mydevice1.company.com\",\"rr\":\"true\",\"poa\":[\"http://"+aeIP+":"+aePort+"\"]}}")
   
-    if result["status"]=="201":
+    if resultDevice["status"]=="201":
         # Create Container resource
-        send("/server/Cae_device1",3,"{\"m2m:cnt\":{\"rn\":\"luminosity\"}}")
-
+        (resp_lux, content_lux) = send(resultDevice["content-location"],3,"{\"m2m:cnt\":{\"rn\":\"luminosity\"}}")
+        
         #Create ContentInstance resource
-        send("/server/Cae_device1/luminosity",4,"{\"m2m:cin\":{\"con\":\"0\"}}")
+        send(resp_lux["content-location"],4,"{\"m2m:cin\":{\"con\":\"0\"}}")
 
         # Create Container resource
-        send("/server/Cae_device1",3,"{\"m2m:cnt\":{\"rn\":\"led\"}}")
+        (resp_led, content_led) = send(resultDevice["content-location"],3,"{\"m2m:cnt\":{\"rn\":\"led\"}}")
 
         # Create ContentInstance resource
-        send("/server/Cae_device1/led",4,"{\"m2m:cin\":{\"con\":\"OFF\"}}")
+        (resp_ledstate, content_ledstate) = send(resp_led["content-location"],4,"{\"m2m:cin\":{\"con\":\"OFF\"}}")
 
         # Create Subscription resource
-        send("/server/Cae_device1/led",23,"{\"m2m:sub\":{\"rn\":\"led_sub\",\"nu\":[\"Cae_device1\"],\"nct\":1}}")
+        (resp_suscription, content_suscription) = send(resp_led["content-location"],23,"{\"m2m:sub\":{\"rn\":\"led_sub\",\"nu\":[\"Cae_device1\"],\"nct\":1}}")
   
 
 # Method in charge of sending request to the CSE
