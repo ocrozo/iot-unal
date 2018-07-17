@@ -87,7 +87,7 @@ def setup_ae():
     # Create AE resource
     result = send("/server",2,"{\"m2m:ae\":{\"rn\":\"mydevice1\",\"api\":\"mydevice1.company.com\",\"rr\":\"true\",\"poa\":[\"http://"+aeIP+":"+aePort+"\"]}}")
   
-    if result=="HTTP/1.1 201 Created":
+    if result["status"]=="201":
         # Create Container resource
         send("/server/mydevice1",3,"{\"m2m:cnt\":{\"rn\":\"luminosity\"}}")
 
