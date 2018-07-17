@@ -14,11 +14,11 @@ import tsl2561
 import RPi.GPIO as GPIO
 
 # CSE params
-host = "10.10.4.109" # Computer IP address
+host = "192.168.2.1" # Computer IP address
 httpPort = 8080
 
 # AE params
-aeIP = "10.10.6.163" #Raspberry IP address
+aeIP = "192.168.2.7" #Raspberry IP address
 aePort   = "80"
 origin   = "Cae_device1"
 
